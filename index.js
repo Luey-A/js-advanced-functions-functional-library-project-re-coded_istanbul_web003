@@ -35,8 +35,109 @@ for (const c in collection) {
       }
     },
 
+filter: function (collection, predicate) {
+      const newArr = [];
+      for (const c in collection) {
+        if (predicate(collection[c]) === true) {
+          newArr.push(collection[c]);
+        }
+      }
+      return newArr;
+    },
+    size: function (collection) {
+      return Object.keys(collection).length;
+    },
+    first: function (array, n) {
+      if (n === undefined) {
+        return array[0];
+      } else {
+        return array.slice(0, n);
+      }
+    },
+    last: function (array, n) {
+      if (n === undefined) {
+        return array[array.length - 1];
+      } else {
+        return array.slice(array.length - n);
+      }
+    },
+    compact: function (array) {
+      const newArr = [];
+      for (let i = 0; i < array.length; i++) {
+        if (array[i]) {
+          newArr.push(array[i]);
+        }
+      }
+      return newArr;
+    },
+    sortBy: function (array, callback) {
+      return [...array].sort(function (a, b) {
+        return callback(a) - callback(b);
+      });
+    },
+    flatten: function (array, [shallow]) {
+      if (shallow === true) {
+        return array.flatten(array, true);
+      } else {
+        return array.flatten(array);
+      }
+    },
+    uniq: function (array, isSorted, callback) {
+      let newArr = [];
+      if (callback) {
+        let arr = [...array].map((element) => callback(element));
+        newArr = array.filter(
+          (value, index, array) => arr.indexOf(callback(value)) === index
+        );
+      } else {
+        newArr = [...new Set(array)];
+      }
+      return newArr;
+    },
+    flatten: function (array, shallow) {
+      let flattened = [];
+      if (shallow) {
+        for (const element of array) {
+          if (Array.isArray(element)) {
+            for (const nestedElement of element) {
+              flattened.push(nestedElement);
+            }
+          } else {
+            flattened.push(element);
+          }
+        }
+      } else {
+        for (const element of array) {
+          if (Array.isArray(element)) {
+            const arrayFlatten = this.flatten(element);
+            for (const nestedElement of arrayFlatten) {
+              flattened.push(nestedElement);
+            }
+          } else {
+            flattened.push(element);
+          }
+        }
+      }
+      return flattened;
+    },	    
+     keys: function (obj) {
 
-  }
-})()
+      return Object.keys(obj);
+     },
+     values: function (obj) {
+      return Object.values(obj);
+    },
+     functions: function (fi) {
+       let newArr = [];
+      for (let i in fi) {
+        if (typeof fi[i] == "function") {
+          newArr.push(fi[i]);
+        }
+      }
+      newArr.sort();
+      return newArr;
+    },
+  };
+})();
 
-fi.libraryMethod()
+fi.libraryMethod();
