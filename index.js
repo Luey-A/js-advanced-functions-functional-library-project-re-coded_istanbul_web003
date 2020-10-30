@@ -12,7 +12,11 @@ for (const c in collection) {
     },
 
     map: function(collection, callback) {
-
+let array = [];
+      for (const c in collection) {
+        array.push(callback(collection[c]));
+      }
+      return array;
     },
 
     reduce: function() {
