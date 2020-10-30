@@ -27,7 +27,7 @@ let array = [];
       }
     },
 
-    functions: function() {
+    functions: function(collection, predicate) {
 
     },
 
