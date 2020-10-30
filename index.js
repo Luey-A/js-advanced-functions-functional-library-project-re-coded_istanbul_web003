@@ -5,7 +5,10 @@ const fi = (function() {
     },
 
     each: function(collection, alert) {
-
+for (const c in collection) {
+        alert(collection[c]);
+      }
+      return collection;
     },
 
     map: function() {
