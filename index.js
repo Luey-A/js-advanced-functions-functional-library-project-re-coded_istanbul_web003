@@ -20,7 +20,11 @@ let array = [];
     },
 
     reduce: function(collection, callback, acc) {
-
+ if (acc === undefined) {
+        return collection.reduce(callback);
+      } else {
+        return collection.reduce(callback, acc);
+      }
     },
 
     functions: function() {
