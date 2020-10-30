@@ -11,7 +11,7 @@ for (const c in collection) {
       return collection;
     },
 
-    map: function(ollection, callback) {
+    map: function(collection, callback) {
 
     },
 
