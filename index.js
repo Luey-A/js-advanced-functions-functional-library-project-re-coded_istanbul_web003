@@ -19,7 +19,7 @@ let array = [];
       return array;
     },
 
-    reduce: function() {
+    reduce: function(collection, callback, acc) {
 
     },
 
