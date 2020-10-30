@@ -28,7 +28,11 @@ let array = [];
     },
 
     functions: function(collection, predicate) {
-
+for (const c in collection) {
+        if (predicate(collection[c]) === true) {
+          return collection[c];
+        }
+      }
     },
 
 
